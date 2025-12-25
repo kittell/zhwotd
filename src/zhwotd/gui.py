@@ -41,9 +41,6 @@ class GUI(tk.Tk):
         # Note: Do not add tab to .grid()
         
         # T1 FRAME START: WORD OF THE DAY
-        # TODO:
-        #   1) Large textbox with word of the day
-        #   2) Below: Left and right arrows to increment day by one; middle entry with date
 
         r_grid_0 += 1; c_grid_0 += 1
         r_grid_1 = -1; c_grid_1 = -1
@@ -54,12 +51,31 @@ class GUI(tk.Tk):
         this_tab.columnconfigure(c_grid_0, weight=1)
         
         # T2 FRAME START: WOTD TEXT
+        r_grid_1 += 1; c_grid_1 += 1
+        r_grid_2 = -1; c_grid_2 = -1
+        self.frame_wotdtext = ttk.Frame(this_frame_1)
+        this_frame_2 = self.frame_wotdtext
+        this_frame_2.grid(row=r_grid_1, column=c_grid_1, sticky='NESW')
+        this_frame_1.rowconfigure(r_grid_1, weight=1)
+        this_frame_1.columnconfigure(c_grid_1, weight=1)
 
         # T3 WIDGET START: WOTD TEXTBOX
+        r_grid_2 += 1; c_grid_2 += 1
+        self.textboxscrollbar_wotd = TextboxScrollbar(this_frame_2)
+        this_frame_3 = self.textboxscrollbar_wotd
+        this_frame_3.grid(row=r_grid_2, column=c_grid_2, sticky='NESW')
+        this_frame_2.rowconfigure(r_grid_2, weight=1)
+        this_frame_2.columnconfigure(c_grid_2, weight=1)
         # T3 WIDGET END: WOTD TEXTBOX
         # T2 FRAME END: WOTD TEXT
 
         # T2 FRAME START: WOTD NAV
+        r_grid_1 += 1; c_grid_1 += 0
+        self.frame_wotdnav = ttk.Frame(this_frame_1)
+        this_frame_2 = self.frame_wotdnav
+        this_frame_2.grid(row=r_grid_1, column=c_grid_1, sticky='NESW')
+        this_frame_1.rowconfigure(r_grid_1, weight=1)
+        this_frame_1.columnconfigure(c_grid_1, weight=1)
 
         # T3 WIDGET START: PREVIOUS DAY BUTTON
         # T3 WIDGET END: PREVIOUS DAY BUTTON
@@ -78,4 +94,11 @@ class GUI(tk.Tk):
 
         # Go
         self.mainloop()
+        return
+    
+class TextboxScrollbar(ttk.Frame):
+    def __init__(self, parent):
+        super().__init__(parent)
+        # TODO
+
         return
