@@ -32,28 +32,48 @@ class GUI(tk.Tk):
         self.notebook.columnconfigure(0, weight=1)
         self.notebook.rowconfigure(0, weight=1)
 
-        # TAB START: TAB_1
+        # TAB START: DASHBOARD
         r_grid_0 = -1; c_grid_0 = -1
-        tab_name = 'TAB_1'
+        tab_name = 'Dashboard'
         self.tabs[tab_name] = ttk.Frame(self.notebook)
         this_tab = self.tabs[tab_name]
         self.notebook.add(this_tab, text=tab_name)
         # Note: Do not add tab to .grid()
         
-        # T1 FRAME START: FRAME_1
+        # T1 FRAME START: WORD OF THE DAY
+        # TODO:
+        #   1) Large textbox with word of the day
+        #   2) Below: Left and right arrows to increment day by one; middle entry with date
+
         r_grid_0 += 1; c_grid_0 += 1
         r_grid_1 = -1; c_grid_1 = -1
-        self.frame_FRAMENAME = ttk.LabelFrame(this_tab, text='frame_1')
-        this_frame_1 = self.frame_FRAMENAME    # tier 1 frame
+        self.frame_wotd = ttk.LabelFrame(this_tab, text='Word of the Day')
+        this_frame_1 = self.frame_wotd    # tier 1 frame
         this_frame_1.grid(row=r_grid_0, column=c_grid_0, sticky='NESW')
         this_tab.rowconfigure(r_grid_0, weight=1)
         this_tab.columnconfigure(c_grid_0, weight=1)
         
+        # T2 FRAME START: WOTD TEXT
 
+        # T3 WIDGET START: WOTD TEXTBOX
+        # T3 WIDGET END: WOTD TEXTBOX
+        # T2 FRAME END: WOTD TEXT
+
+        # T2 FRAME START: WOTD NAV
+
+        # T3 WIDGET START: PREVIOUS DAY BUTTON
+        # T3 WIDGET END: PREVIOUS DAY BUTTON
+
+        # T3 WIDGET START: WOTD DATE
+        # T3 WIDGET END: WOTD DATE
+
+        # T3 WIDGET START: NEXT DAY BUTTON
+        # T3 WIDGET END: NEXT DAY BUTTON
+        # T2 FRAME END: WOTD NAV
  
-        # T1 FRAME END: FRAME_1
+        # T1 FRAME END: WORD OF THE DAY
         
-        # TAB END: TAB_1
+        # TAB END: DASHBOARD
 
 
         # Go
