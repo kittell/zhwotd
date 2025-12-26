@@ -15,3 +15,29 @@ class Word:
         self.examples = examples
         self.hsk = hsk
         self.notes = notes
+
+class DatabaseManager:
+    """Handle operations involving the entire database and its structure
+    """
+    def __init__(self):
+        return
+    
+    def create_db(self):
+        # TODO: to be called from GUI admin page or command line
+        # TODO: read schema from json file; consider how to manage different schema versions
+        # TODO: provide popup window with text box and keywords if doesn't exist
+        return
+    
+    def backup_db(self):
+        # TODO: create copy of db file with current date time appended
+        return
+    
+    def modify_db(self):
+        # TODO: fuzzy... how to make changes to db structure from within program
+        return
+
+class QueryBuilder:
+    """Build queries specific to program function, then handoff to DatabaseManager
+    """
+    def __init__(self):
+        return
