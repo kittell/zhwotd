@@ -1,0 +1,27 @@
+{
+    "versions": {
+        "1": {
+            "tables": {
+                "wotd": {
+                    "columns": {
+                        "id": {"type": "INTEGER", "primary_key": true, "autoincrement": true},
+                        "d": {"type": "DATE", "unique": true, "not_null": true},
+                        "word": {"type": "TEXT"}
+                    }
+                }, 
+                "dictionary": {
+                    "columns": {
+                        "id": {"type": "INTEGER", "primary_key": true, "autoincrement": true},
+                        "simplified": {"type": "TEXT"},
+                        "pinyin": {"type": "TEXT"},
+                        "traditional": {"type": "TEXT"},
+                        "definition": {"type": "TEXT"},
+                        "examples": {"type": "TEXT"},
+                        "notes": {"type": "TEXT"},
+                        "hsk": {"type": "INTEGER"}
+                    }
+                }
+            }
+        }
+    }
+}

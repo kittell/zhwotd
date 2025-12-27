@@ -5,6 +5,8 @@
     },
     "database": {
         "type": "sqlite",
-        "name": "zhwotd.db"
+        "name": "zhwotd.db",
+        "schema": "db_schema.json",
+        "use_version": 1
     }
 }
