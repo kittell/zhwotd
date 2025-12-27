@@ -1,11 +1,12 @@
 import json
 import os
 from zhwotd.gui import GUI
+from zhwotd.zhwotd import DatabaseManager
 
 class Application:
     def __init__(self):
         self.config = self._load_config()
-        print(self.config)
+        self.dbm = DatabaseManager(self.config)
         return
     
     def _load_config(self):

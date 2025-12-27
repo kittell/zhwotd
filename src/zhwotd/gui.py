@@ -14,14 +14,14 @@ class GUI(tk.Tk):
         self.var = dict()
 
         # GUI configuration defaults
-        if config is None:
+        if config is None or 'gui' not in config:
             self.config = dict()
         else:
-            self.config = config
+            self.config = config['gui']
         if 'title' not in self.config:
-            self.config['title'] = ''
+            self.config['gui']['title'] = ''
         if 'size' not in self.config:
-            self.config['size'] = '800x600'
+            self.config['gui']['size'] = '800x600'
 
         # Display basic items
         self.title(self.config['title'])

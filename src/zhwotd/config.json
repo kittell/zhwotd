@@ -1,4 +1,10 @@
 {
-    "title": "Chinese Word of the Day (ZhWOTD)",
-    "size": "800x600"
+    "gui": {
+        "title": "Chinese Word of the Day (ZhWOTD)",
+        "size": "800x600"
+    },
+    "database": {
+        "type": "sqlite",
+        "name": "zhwotd.db"
+    }
 }
