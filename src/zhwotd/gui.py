@@ -14,14 +14,14 @@ class GUI(tk.Tk):
         self.var = dict()
 
         # GUI configuration defaults
-        if config is None or 'gui' not in config:
+        if config is None:
             self.config = dict()
         else:
-            self.config = config['gui']
+            self.config = config
         if 'title' not in self.config:
-            self.config['gui']['title'] = ''
+            self.config['title'] = ''
         if 'size' not in self.config:
-            self.config['gui']['size'] = '800x600'
+            self.config['size'] = '800x600'
 
         # Display basic items
         self.title(self.config['title'])
@@ -71,19 +71,40 @@ class GUI(tk.Tk):
 
         # T2 FRAME START: WOTD NAV
         r_grid_1 += 1; c_grid_1 += 0
+        r_grid_2 = -1; c_grid_2 = -1
         self.frame_wotdnav = ttk.Frame(this_frame_1)
         this_frame_2 = self.frame_wotdnav
-        this_frame_2.grid(row=r_grid_1, column=c_grid_1, sticky='NESW')
-        this_frame_1.rowconfigure(r_grid_1, weight=1)
+        this_frame_2.grid(row=r_grid_1, column=c_grid_1, sticky='S')
+        this_frame_1.rowconfigure(r_grid_1, weight=0)
         this_frame_1.columnconfigure(c_grid_1, weight=1)
 
         # T3 WIDGET START: PREVIOUS DAY BUTTON
+        r_grid_2 += 1; c_grid_2 += 1
+        self.button_wotdprev = ttk.Button(this_frame_2, text='<< Previous', command=self._callback_button_wotdprev)
+        this_widget_3 = self.button_wotdprev
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='W')
+        this_frame_2.rowconfigure(r_grid_2, weight=1)
+        this_frame_2.columnconfigure(c_grid_2, weight=0)
         # T3 WIDGET END: PREVIOUS DAY BUTTON
 
         # T3 WIDGET START: WOTD DATE
+        # TODO: start as entry; change to date picker later
+        r_grid_2 += 0; c_grid_2 += 1
+        self.var['wotd_date'] = tk.StringVar()
+        self.entry_wotddate = ttk.Entry(this_frame_2, textvariable=self.var['wotd_date'], width=12)
+        this_widget_3 = self.entry_wotddate
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='EW')
+        # this_frame_2.rowconfigure(r_grid_2, weight=0)
+        this_frame_2.columnconfigure(c_grid_2, weight=0)
         # T3 WIDGET END: WOTD DATE
 
         # T3 WIDGET START: NEXT DAY BUTTON
+        r_grid_2 += 0; c_grid_2 += 1
+        self.button_wotdnext = ttk.Button(this_frame_2, text='Next >>', command=self._callback_button_wotdnext)
+        this_widget_3 = self.button_wotdnext
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='E')
+        # this_frame_2.rowconfigure(r_grid_2, weight=0)
+        this_frame_2.columnconfigure(c_grid_2, weight=0)
         # T3 WIDGET END: NEXT DAY BUTTON
         # T2 FRAME END: WOTD NAV
  
@@ -94,6 +115,14 @@ class GUI(tk.Tk):
 
         # Go
         self.mainloop()
+        return
+    
+    def _callback_button_wotdprev(self):
+        # TODO _callback_button_wotdprev
+        return
+    
+    def _callback_button_wotdnext(self):
+        # TODO _callback_button_wotdnext
         return
     
 class TextboxScrollbar(ttk.Frame):
