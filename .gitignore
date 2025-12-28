@@ -1,5 +1,2 @@
-src/zhwotd/__pycache__/__init__.cpython-311.pyc
-src/zhwotd/__pycache__/__main__.cpython-311.pyc
-src/zhwotd/__pycache__/app.cpython-311.pyc
-src/zhwotd/__pycache__/gui.cpython-311.pyc
-src/zhwotd/__pycache__/zhwotd.cpython-311.pyc
+src/zhwotd/__pycache__/
+venv/

@@ -53,6 +53,7 @@ class DatabaseManager:
         schema = self._load_schema(self.config['schema'], self.config['use_version'])
         with self.engine.connect() as conn:
             # Creates database file if it doesn't exist
+            # TODO: don't automatically create database, give popup to create or cancel
             for table_name, table_def in schema['tables'].items():
                 columns_sql = []
 

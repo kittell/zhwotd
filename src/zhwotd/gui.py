@@ -47,7 +47,7 @@ class GUI(tk.Tk):
         self.frame_wotd = ttk.LabelFrame(this_tab, text='Word of the Day')
         this_frame_1 = self.frame_wotd    # tier 1 frame
         this_frame_1.grid(row=r_grid_0, column=c_grid_0, sticky='NESW')
-        this_tab.rowconfigure(r_grid_0, weight=1)
+        this_tab.rowconfigure(r_grid_0, weight=0)
         this_tab.columnconfigure(c_grid_0, weight=1)
         
         # T2 FRAME START: WOTD TEXT
@@ -111,6 +111,27 @@ class GUI(tk.Tk):
         # T1 FRAME END: WORD OF THE DAY
         
         # TAB END: DASHBOARD
+
+
+        # TAB START: ACTION
+        r_grid_0 = -1; c_grid_0 = -1
+        tab_name = 'Action'
+        self.tabs[tab_name] = ttk.Frame(self.notebook)
+        this_tab = self.tabs[tab_name]
+        self.notebook.add(this_tab, text=tab_name)
+        # Note: Do not add tab to .grid()
+
+        # T1 FRAME START: ACTIONS
+        r_grid_0 += 1; c_grid_0 += 1
+        r_grid_1 = -1; c_grid_1 = -1
+        self.frame_actions = ttk.LabelFrame(this_tab, text='Actions')
+        this_frame_1 = self.frame_actions
+        this_frame_1.grid(row=r_grid_0, column=c_grid_0, sticky='NESW')
+        this_tab.rowconfigure(r_grid_0, weight=1)
+        this_tab.columnconfigure(c_grid_0, weight=1)
+
+
+        # TAB END: ACTION
 
 
         # Go
