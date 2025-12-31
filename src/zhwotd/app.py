@@ -27,6 +27,15 @@ class Application:
         gui = GUI(self, self.config['gui'])
         return
     
+    def find_word(self, word) -> str:
+        result = ''
+        query_builder = QueryBuilder()
+        query = query_builder.find_word(word)
+        print('query:', query)
+        query_result = self.dbm.execute(text(query))
+        print('query_result:', query_result)
+        return result
+    
 
 class DatabaseManager:
     """Handle operations involving the entire database and its structure
@@ -47,6 +56,14 @@ class DatabaseManager:
             self.create_new_db()
 
         return
+    
+    def execute(self, query: str) -> list:
+        results = []
+        with self.engine.connect() as conn:
+            result = conn.execute(query)
+            return result.fetchall()
+        return results
+        
 
     def create_new_db(self):
         
@@ -106,3 +123,20 @@ class DatabaseManager:
     def modify_db(self):
         # TODO: fuzzy... how to make changes to db structure from within program
         return
+    
+
+class QueryBuilder:
+    """Build queries specific to program function, then handoff to DatabaseManager
+    """
+    def __init__(self):
+        return
+    
+    def find_word(self, word: str) -> str:
+        # TODO: restart here next time
+        query = f'''
+            SELECT *
+            FROM words
+            WHERE word = :word
+        '''
+        return query
+

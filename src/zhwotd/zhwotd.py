@@ -1,8 +1,3 @@
-class QueryBuilder:
-    """Build queries specific to program function, then handoff to DatabaseManager
-    """
-    def __init__(self):
-        return
     
 class WOTD:
     def __init__(self, word: str, date: str):

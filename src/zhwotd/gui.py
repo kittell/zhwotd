@@ -91,9 +91,9 @@ class GUI(tk.Tk):
 
         # T3 WIDGET START: WOTD DATE
         # TODO: start as entry; change to date picker later
-        r_grid_2 += 0; c_grid_2 += 1
         today_str = date.today().isoformat()
         self.var['wotd_date'] = tk.StringVar(value=today_str)
+        r_grid_2 += 0; c_grid_2 += 1
         self.entry_wotddate = ttk.Entry(this_frame_2, textvariable=self.var['wotd_date'], width=12)
         this_widget_3 = self.entry_wotddate
         this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='EW')
@@ -112,6 +112,16 @@ class GUI(tk.Tk):
         # T2 FRAME END: WOTD NAV
  
         # T1 FRAME END: WORD OF THE DAY
+
+        # T1 FRAME START: STATS
+        r_grid_0 += 1; c_grid_0 += 0
+        r_grid_1 = -1; c_grid_1 = -1
+        self.frame_stats = ttk.LabelFrame(this_tab, text='Statistics')
+        this_frame_1 = self.frame_stats
+        this_frame_1.grid(row=r_grid_0, column=c_grid_0, sticky='NESW')
+        this_tab.rowconfigure(r_grid_0, weight=1)
+        # this_tab.columnconfigure(c_grid_0, weight=1)
+        # T1 FRAME END: STATS
         
         # TAB END: DASHBOARD
 
@@ -133,14 +143,93 @@ class GUI(tk.Tk):
         this_tab.rowconfigure(r_grid_0, weight=1)
         this_tab.columnconfigure(c_grid_0, weight=1)
 
+        self.var['add'] = dict()
+
         # T2 FRAME START: ADD WORD ROW 1
         r_grid_1 += 1; c_grid_1 += 1
         r_grid_2 = -1; c_grid_2 = -1
         self.frame_addwordrow1 = ttk.Frame(this_frame_1)
         this_frame_2 = self.frame_addwordrow1
         this_frame_2.grid(row=r_grid_1, column=c_grid_1, sticky='NESW')
-        this_frame_1.rowconfigure(r_grid_1, weight=1)
+        this_frame_1.rowconfigure(r_grid_1, weight=0)
         this_frame_1.columnconfigure(c_grid_1, weight=1)
+        
+        # T3 WIDGET START: ADD WORD WORD LABEL
+        r_grid_2 += 1; c_grid_2 += 1
+        self.label_addword_word = ttk.Label(this_frame_2, text='Word:')
+        this_widget_3 = self.label_addword_word
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='W')
+        this_frame_2.rowconfigure(r_grid_2, weight=0)
+        this_frame_2.columnconfigure(c_grid_2, weight=0)
+        # T3 WIDGET END: ADD WORD WORD LABEL
+
+        # T3 WIDGET START: ADD WORD WORD ENTRY
+        self.var['add']['word'] = tk.StringVar(value='')
+        r_grid_2 += 0; c_grid_2 += 1
+        self.entry_addword_word = ttk.Entry(this_frame_2, textvariable=self.var['add']['word'], width=10)
+        this_widget_3 = self.entry_addword_word
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='EW')
+        this_frame_2.rowconfigure(r_grid_2, weight=0)
+        this_frame_2.columnconfigure(c_grid_2, weight=1)
+        # T3 WIDGET END: ADD WORD WORD ENTRY
+
+        # T3 WIDGET START: ADD WORD PINYIN LABEL
+        r_grid_2 += 0; c_grid_2 += 1
+        self.label_addword_pinyin = ttk.Label(this_frame_2, text='Pinyin:')
+        this_widget_3 = self.label_addword_pinyin
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='W')
+        this_frame_2.rowconfigure(r_grid_2, weight=0)
+        this_frame_2.columnconfigure(c_grid_2, weight=0)
+        # T3 WIDGET END: ADD WORD PINYIN LABEL
+
+        # T3 WIDGET START: ADD WORD PINYIN ENTRY
+        self.var['add']['pinyin'] = tk.StringVar(value='')
+        r_grid_2 += 0; c_grid_2 += 1
+        self.entry_addword_pinyin = ttk.Entry(this_frame_2, textvariable=self.var['add']['pinyin'], width=30)
+        this_widget_3 = self.entry_addword_pinyin
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='EW')
+        this_frame_2.rowconfigure(r_grid_2, weight=0)
+        this_frame_2.columnconfigure(c_grid_2, weight=1)
+        # T3 WIDGET END: ADD WORD PINYIN ENTRY
+
+        # T3 WIDGET START: ADD WORD TRADITIONAL LABEL
+        r_grid_2 += 0; c_grid_2 += 1
+        self.label_addword_traditional = ttk.Label(this_frame_2, text='Traditional:')
+        this_widget_3 = self.label_addword_traditional
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='W')
+        this_frame_2.rowconfigure(r_grid_2, weight=0)
+        this_frame_2.columnconfigure(c_grid_2, weight=0)
+        # T3 WIDGET END: ADD WORD TRADITIONAL LABEL
+
+        # T3 WIDGET START: ADD WORD TRADITIONAL ENTRY
+        self.var['add']['traditional'] = tk.StringVar(value='')
+        r_grid_2 += 0; c_grid_2 += 1
+        self.entry_addword_traditional = ttk.Entry(this_frame_2, textvariable=self.var['add']['traditional'], width=10)
+        this_widget_3 = self.entry_addword_traditional
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='EW')
+        this_frame_2.rowconfigure(r_grid_2, weight=0)
+        this_frame_2.columnconfigure(c_grid_2, weight=1)
+        # T3 WIDGET END: ADD WORD TRADITIONAL ENTRY
+
+        # T3 WIDGET START: ADD WORD HSK LABEL
+        r_grid_2 += 0; c_grid_2 += 1
+        self.label_addword_hsk = ttk.Label(this_frame_2, text='HSK Level:')
+        this_widget_3 = self.label_addword_hsk
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='W')
+        this_frame_2.rowconfigure(r_grid_2, weight=0)
+        this_frame_2.columnconfigure(c_grid_2, weight=0)
+        # T3 WIDGET END: ADD WORD HSK LABEL
+
+        # T3 WIDGET START: ADD WORD HSK ENTRY
+        self.var['add']['hsk'] = tk.IntVar(value=0)
+        r_grid_2 += 0; c_grid_2 += 1
+        self.entry_addword_hsk = ttk.Entry(this_frame_2, textvariable=self.var['add']['hsk'], width=5)
+        this_widget_3 = self.entry_addword_hsk
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='EW')
+        this_frame_2.rowconfigure(r_grid_2, weight=0)
+        this_frame_2.columnconfigure(c_grid_2, weight=0)
+        # T3 WIDGET END: ADD WORD HSK ENTRY
+
         # T2 FRAME END: ADD WORD ROW 1
 
         # T2 FRAME START: ADD WORD ROW 2
@@ -148,9 +237,28 @@ class GUI(tk.Tk):
         r_grid_2 = -1; c_grid_2 = -1
         self.frame_addwordrow2 = ttk.Frame(this_frame_1)
         this_frame_2 = self.frame_addwordrow2
-        this_frame_2.grid(row=r_grid_1, column=c_grid_1, sticky='NESW')
-        this_frame_1.rowconfigure(r_grid_1, weight=1)
+        this_frame_2.grid(row=r_grid_1, column=c_grid_1, sticky='NEW')
+        this_frame_1.rowconfigure(r_grid_1, weight=0)
         # this_frame_1.columnconfigure(c_grid_1, weight=1)
+
+        # T3 WIDGET START: ADD WORD DEFINITION LABEL
+        r_grid_2 += 1; c_grid_2 += 1
+        self.label_addword_definition = ttk.Label(this_frame_2, text='Definition:')
+        this_widget_3 = self.label_addword_definition
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='NW')
+        this_frame_2.rowconfigure(r_grid_2, weight=1)
+        this_frame_2.columnconfigure(c_grid_2, weight=0)
+        # T3 WIDGET END: ADD WORD DEFINITION LABEL
+
+        # T3 WIDGET START: ADD WORD DEFINITION ENTRY
+        self.var['add']['definition'] = tk.StringVar(value='')
+        r_grid_2 += 0; c_grid_2 += 1
+        self.entry_addword_definition = ttk.Entry(this_frame_2, textvariable=self.var['add']['definition'])
+        this_widget_3 = self.entry_addword_definition
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='NESW')
+        # this_frame_2.rowconfigure(r_grid_2, weight=1)
+        this_frame_2.columnconfigure(c_grid_2, weight=1)
+        # T3 WIDGET END: ADD WORD DEFINITION ENTRY
         # T2 FRAME END: ADD WORD ROW 2
 
         # T2 FRAME START: ADD WORD ROW 3
@@ -159,8 +267,26 @@ class GUI(tk.Tk):
         self.frame_addwordrow3 = ttk.Frame(this_frame_1)
         this_frame_2 = self.frame_addwordrow3
         this_frame_2.grid(row=r_grid_1, column=c_grid_1, sticky='NESW')
-        this_frame_1.rowconfigure(r_grid_1, weight=1)
+        this_frame_1.rowconfigure(r_grid_1, weight=0)
         # this_frame_1.columnconfigure(c_grid_1, weight=1)
+
+        # T3 WIDGET START: ADD WORD EXAMPLE LABEL
+        r_grid_2 += 1; c_grid_2 += 1
+        self.label_addword_example = ttk.Label(this_frame_2, text='Example:')
+        this_widget_3 = self.label_addword_example
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='NW')
+        this_frame_2.rowconfigure(r_grid_2, weight=1)
+        this_frame_2.columnconfigure(c_grid_2, weight=0)
+        # T3 WIDGET END: ADD WORD EXAMPLE LABEL
+
+        # T3 WIDGET START: ADD WORD EXAMPLE ENTRY
+        self.var['add']['example'] = tk.StringVar(value='')
+        r_grid_2 += 0; c_grid_2 += 1
+        self.entry_addword_example = ttk.Entry(this_frame_2, textvariable=self.var['add']['example'])
+        this_widget_3 = self.entry_addword_example
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='NESW')
+        # this_frame_2.rowconfigure(r_grid_2, weight=1)
+        this_frame_2.columnconfigure(c_grid_2, weight=1)
         # T2 FRAME END: ADD WORD ROW 3
 
         # T2 FRAME START: ADD WORD ROW 4
@@ -169,15 +295,363 @@ class GUI(tk.Tk):
         self.frame_addwordrow4 = ttk.Frame(this_frame_1)
         this_frame_2 = self.frame_addwordrow4
         this_frame_2.grid(row=r_grid_1, column=c_grid_1, sticky='NESW')
-        this_frame_1.rowconfigure(r_grid_1, weight=1)
+        this_frame_1.rowconfigure(r_grid_1, weight=0)
         # this_frame_1.columnconfigure(c_grid_1, weight=1)
+
+        # T3 WIDGET START: ADD WORD NOTES LABEL
+        r_grid_2 += 1; c_grid_2 += 1
+        self.label_addword_notes = ttk.Label(this_frame_2, text='Notes:')
+        this_widget_3 = self.label_addword_notes
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='NW')
+        this_frame_2.rowconfigure(r_grid_2, weight=1)
+        this_frame_2.columnconfigure(c_grid_2, weight=0)
+        # T3 WIDGET END: ADD WORD NOTES LABEL
+
+        # T3 WIDGET START: ADD WORD NOTES ENTRY
+        self.var['add']['notes'] = tk.StringVar(value='')
+        r_grid_2 += 0; c_grid_2 += 1
+        self.entry_addword_notes = ttk.Entry(this_frame_2, textvariable=self.var['add']['notes'])
+        this_widget_3 = self.entry_addword_notes
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='NESW')
+        # this_frame_2.rowconfigure(r_grid_2, weight=1)
+        this_frame_2.columnconfigure(c_grid_2, weight=1)
         # T2 FRAME END: ADD WORD ROW 4
-        # T1 END: ADD WORD
-        # TAB END: ACTION
+
+        # T2 FRAME START: ADD WORD CHECK
+        r_grid_1 += 1; c_grid_1 += 0
+        r_grid_2 = -1; c_grid_2 = -1
+        self.frame_addwordcheck = ttk.Frame(this_frame_1)
+        this_frame_2 = self.frame_addwordcheck
+        this_frame_2.grid(row=r_grid_1, column=c_grid_1, sticky='NESW')
+        this_frame_1.rowconfigure(r_grid_1, weight=0)
+        # this_frame_1.columnconfigure(c_grid_1, weight=1)
+        
+        # T3 WIDGET START: ADD WORD CHECK BUTTON
+        r_grid_2 += 1; c_grid_2 += 1
+        self.button_addword_check = ttk.Button(this_frame_2, text='Check word', command=self._callback_button_addword_check)
+        this_widget_3 = self.button_addword_check
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='W')
+        this_frame_2.rowconfigure(r_grid_2, weight=0)
+        this_frame_2.columnconfigure(c_grid_2, weight=0)
+        # T3 WIDGET END: ADD WORD CHECK BUTTON
+
+        # T3 WIDGET START: ADD WORD CHECK RESULTS
+        self.var['add']['checkresults'] = tk.StringVar(value='')
+        r_grid_2 += 0; c_grid_2 += 1
+        self.label_addword_checkresults = ttk.Label(this_frame_2, textvariable=self.var['add']['checkresults'])
+        this_widget_3 = self.label_addword_checkresults
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='EW')
+        # this_frame_2.rowconfigure(r_grid_2, weight=0)
+        this_frame_2.columnconfigure(c_grid_2, weight=1)
+        # T3 WIDGET END: ADD WORD CHECK RESULTS
+        # T2 FRAME END: ADD WORD CHECK
+
+        # T2 FRAME START: ADD WORD ADD
+        r_grid_1 += 1; c_grid_1 += 0
+        r_grid_2 = -1; c_grid_2 = -1
+        self.frame_addwordadd = ttk.Frame(this_frame_1)
+        this_frame_2 = self.frame_addwordadd
+        this_frame_2.grid(row=r_grid_1, column=c_grid_1, sticky='NESW')
+        this_frame_1.rowconfigure(r_grid_1, weight=0)
+        # this_frame_1.columnconfigure(c_grid_1, weight=1)
+
+        # T3 WIDGET START: ADD WORD ADD BUTTON
+        r_grid_2 += 1; c_grid_2 += 1
+        self.button_addword_add = ttk.Button(this_frame_2, text='Add word', command=self._callback_button_addword_add)
+        this_widget_3 = self.button_addword_add
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='E')
+        # this_frame_2.rowconfigure(r_grid_2, weight=0)
+        this_frame_2.columnconfigure(c_grid_2, weight=0)
+        # T3 WIDGET END: ADD WORD ADD BUTTON
+
+        # T3 WIDGET START: ADD WORD ADD RESULTS
+        self.var['add']['addresults'] = tk.StringVar(value='')
+        r_grid_2 += 0; c_grid_2 += 1
+        self.label_addword_addresults = ttk.Label(this_frame_2, textvariable=self.var['add']['addresults'])
+        this_widget_3 = self.label_addword_addresults
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='EW')
+        # this_frame_2.rowconfigure(r_grid_2, weight=0)
+        this_frame_2.columnconfigure(c_grid_2, weight=1)
+        # T3 WIDGET END: ADD WORD ADD RESULTS
+        # T2 FRAME END: ADD WORD ADD
+        # T1 FRAME END: ADD WORD
+
+        # T1 FRAME START: EDIT WORD
+        r_grid_0 += 1; c_grid_0 += 0
+        r_grid_1 = -1; c_grid_1 = -1
+        self.frame_editword = ttk.LabelFrame(this_tab, text='Edit word')
+        this_frame_1 = self.frame_editword
+        this_frame_1.grid(row=r_grid_0, column=c_grid_0, sticky='NESW')
+        this_tab.rowconfigure(r_grid_0, weight=1)
+        # this_tab.columnconfigure(c_grid_0, weight=1)
+
+        self.var['edit'] = dict()
+
+        # T2 FRAME START: SEARCH WORD
+        r_grid_1 += 1; c_grid_1 += 1
+        r_grid_2 = -1; c_grid_2 = -1
+        self.frame_searchword = ttk.Frame(this_frame_1)
+        this_frame_2 = self.frame_searchword
+        this_frame_2.grid(row=r_grid_1, column=c_grid_1, sticky='NESW')
+        this_frame_1.rowconfigure(r_grid_1, weight=0)
+        this_frame_1.columnconfigure(c_grid_1, weight=1)
+        # T2 FRAME END: SEARCH WORD
+
+        # T3 WIDGET START: SEARCH WORD LABEL
+        r_grid_2 += 1; c_grid_2 += 1
+        self.label_searchword = ttk.Label(this_frame_2, text='Search word:')
+        this_widget_3 = self.label_searchword
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='W')
+        this_frame_2.rowconfigure(r_grid_2, weight=1)
+        this_frame_2.columnconfigure(c_grid_2, weight=0)
+        # T3 WIDGET END: SEARCH WORD LABEL
+
+        # T3 WIDGET START: SEARCH WORD ENTRY
+        r_grid_2 += 0; c_grid_2 += 1
+        self.var['edit']['searchword'] = tk.StringVar(value='')
+        self.entry_searchword = ttk.Entry(this_frame_2, textvariable=self.var['edit']['searchword'], width=20)
+        this_widget_3 = self.entry_searchword
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='EW')
+        # this_frame_2.rowconfigure(r_grid_2, weight=1)
+        this_frame_2.columnconfigure(c_grid_2, weight=1)
+        # T3 WIDGET END: SEARCH WORD ENTRY
+
+        # T3 WIDGET START: SEARCH WORD BUTTON
+        r_grid_2 += 0; c_grid_2 += 1
+        self.button_searchword = ttk.Button(this_frame_2, text='Search', command=self._callback_button_searchword)
+        this_widget_3 = self.button_searchword
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='E')
+        # this_frame_2.rowconfigure(r_grid_2, weight=1)
+        this_frame_2.columnconfigure(c_grid_2, weight=0)
+        # T3 WIDGET END: SEARCH WORD BUTTON
+
+        # T2 FRAME END: SEARCH WORD
+
+        # T2 FRAME START: SEARCH WORD RESULTS
+        r_grid_1 += 1; c_grid_1 += 0
+        r_grid_2 = -1; c_grid_2 = -1
+        self.frame_searchwordresults = ttk.Frame(this_frame_1)
+        this_frame_2 = self.frame_searchwordresults
+        this_frame_2.grid(row=r_grid_1, column=c_grid_1, sticky='NESW')
+        this_frame_1.rowconfigure(r_grid_1, weight=0)
+        # this_frame_1.columnconfigure(c_grid_1, weight=1)
+        
+        # T3 WIDGET START: SEARCH WORD RESULTS LABEL
+        r_grid_2 += 1; c_grid_2 += 1
+        self.var['edit']['searchresults'] = tk.StringVar(value='')
+        self.label_searchword_results = ttk.Label(this_frame_2, textvariable=self.var['edit']['searchresults'])
+        this_widget_3 = self.label_searchword_results
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='NESW')
+        this_frame_2.rowconfigure(r_grid_2, weight=1)
+        this_frame_2.columnconfigure(c_grid_2, weight=1)
+        # T3 WIDGET END: SEARCH WORD RESULTS LABEL
+        # T2 FRAME END: SEARCH WORD RESULTS
+
+        # T2 FRAME START: EDIT WORD ROW 1
+        r_grid_1 += 1; c_grid_1 += 0
+        r_grid_2 = -1; c_grid_2 = -1
+        self.frame_editwordrow1 = ttk.Frame(this_frame_1)
+        this_frame_2 = self.frame_editwordrow1
+        this_frame_2.grid(row=r_grid_1, column=c_grid_1, sticky='NESW')
+        this_frame_1.rowconfigure(r_grid_1, weight=0)
+        this_frame_1.columnconfigure(c_grid_1, weight=1)
+        
+        # T3 WIDGET START: EDIT WORD WORD LABEL
+        r_grid_2 += 1; c_grid_2 += 1
+        self.label_editword_word = ttk.Label(this_frame_2, text='Word:')
+        this_widget_3 = self.label_editword_word
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='W')
+        this_frame_2.rowconfigure(r_grid_2, weight=0)
+        this_frame_2.columnconfigure(c_grid_2, weight=0)
+        # T3 WIDGET END: EDIT WORD WORD LABEL
+
+        # T3 WIDGET START: EDIT WORD WORD ENTRY
+        r_grid_2 += 0; c_grid_2 += 1
+        self.var['add']['word'] = tk.StringVar(value='')
+        self.entry_editword_word = ttk.Entry(this_frame_2, textvariable=self.var['add']['word'], width=10)
+        this_widget_3 = self.entry_editword_word
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='EW')
+        this_frame_2.rowconfigure(r_grid_2, weight=0)
+        this_frame_2.columnconfigure(c_grid_2, weight=1)
+        # T3 WIDGET END: EDIT WORD WORD ENTRY
+
+        # T3 WIDGET START: EDIT WORD PINYIN LABEL
+        r_grid_2 += 0; c_grid_2 += 1
+        self.label_editword_pinyin = ttk.Label(this_frame_2, text='Pinyin:')
+        this_widget_3 = self.label_editword_pinyin
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='W')
+        this_frame_2.rowconfigure(r_grid_2, weight=0)
+        this_frame_2.columnconfigure(c_grid_2, weight=0)
+        # T3 WIDGET END: EDIT WORD PINYIN LABEL
+
+        # T3 WIDGET START: EDIT WORD PINYIN ENTRY
+        r_grid_2 += 0; c_grid_2 += 1
+        self.var['add']['pinyin'] = tk.StringVar(value='')
+        self.entry_editword_pinyin = ttk.Entry(this_frame_2, textvariable=self.var['add']['pinyin'], width=30)
+        this_widget_3 = self.entry_editword_pinyin
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='EW')
+        this_frame_2.rowconfigure(r_grid_2, weight=0)
+        this_frame_2.columnconfigure(c_grid_2, weight=1)
+        # T3 WIDGET END: EDIT WORD PINYIN ENTRY
+
+        # T3 WIDGET START: EDIT WORD TRADITIONAL LABEL
+        r_grid_2 += 0; c_grid_2 += 1
+        self.label_editword_traditional = ttk.Label(this_frame_2, text='Traditional:')
+        this_widget_3 = self.label_editword_traditional
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='W')
+        this_frame_2.rowconfigure(r_grid_2, weight=0)
+        this_frame_2.columnconfigure(c_grid_2, weight=0)
+        # T3 WIDGET END: EDIT WORD TRADITIONAL LABEL
+
+        # T3 WIDGET START: EDIT WORD TRADITIONAL ENTRY
+        r_grid_2 += 0; c_grid_2 += 1
+        self.var['add']['traditional'] = tk.StringVar(value='')
+        self.entry_editword_traditional = ttk.Entry(this_frame_2, textvariable=self.var['add']['traditional'], width=10)
+        this_widget_3 = self.entry_editword_traditional
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='EW')
+        this_frame_2.rowconfigure(r_grid_2, weight=0)
+        this_frame_2.columnconfigure(c_grid_2, weight=1)
+        # T3 WIDGET END: EDIT WORD TRADITIONAL ENTRY
+
+        # T3 WIDGET START: EDIT WORD HSK LABEL
+        r_grid_2 += 0; c_grid_2 += 1
+        self.label_editword_hsk = ttk.Label(this_frame_2, text='HSK Level:')
+        this_widget_3 = self.label_editword_hsk
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='W')
+        this_frame_2.rowconfigure(r_grid_2, weight=0)
+        this_frame_2.columnconfigure(c_grid_2, weight=0)
+        # T3 WIDGET END: EDIT WORD HSK LABEL
+
+        # T3 WIDGET START: EDIT WORD HSK ENTRY
+        r_grid_2 += 0; c_grid_2 += 1
+        self.var['add']['hsk'] = tk.IntVar(value='')
+        self.entry_editword_hsk = ttk.Entry(this_frame_2, textvariable=self.var['add']['hsk'], width=5)
+        this_widget_3 = self.entry_editword_hsk
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='EW')
+        this_frame_2.rowconfigure(r_grid_2, weight=0)
+        this_frame_2.columnconfigure(c_grid_2, weight=0)
+        # T3 WIDGET END: EDIT WORD HSK ENTRY
+
+        # T2 FRAME END: EDIT WORD ROW 1
+
+        # T2 FRAME START: EDIT WORD ROW 2
+        r_grid_1 += 1; c_grid_1 += 0
+        r_grid_2 = -1; c_grid_2 = -1
+        self.frame_editwordrow2 = ttk.Frame(this_frame_1)
+        this_frame_2 = self.frame_editwordrow2
+        this_frame_2.grid(row=r_grid_1, column=c_grid_1, sticky='NEW')
+        this_frame_1.rowconfigure(r_grid_1, weight=0)
+        # this_frame_1.columnconfigure(c_grid_1, weight=1)
+
+        # T3 WIDGET START: EDIT WORD DEFINITION LABEL
+        r_grid_2 += 1; c_grid_2 += 1
+        self.label_editword_definition = ttk.Label(this_frame_2, text='Definition:')
+        this_widget_3 = self.label_editword_definition
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='NW')
+        this_frame_2.rowconfigure(r_grid_2, weight=1)
+        this_frame_2.columnconfigure(c_grid_2, weight=0)
+        # T3 WIDGET END: EDIT WORD DEFINITION LABEL
+
+        # T3 WIDGET START: EDIT WORD DEFINITION ENTRY
+        r_grid_2 += 0; c_grid_2 += 1
+        self.var['add']['definition'] = tk.StringVar(value='')
+        self.entry_editword_definition = ttk.Entry(this_frame_2, textvariable=self.var['add']['definition'])
+        this_widget_3 = self.entry_editword_definition
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='NESW')
+        # this_frame_2.rowconfigure(r_grid_2, weight=1)
+        this_frame_2.columnconfigure(c_grid_2, weight=1)
+        # T3 WIDGET END: EDIT WORD DEFINITION ENTRY
+        # T2 FRAME END: EDIT WORD ROW 2
+
+        # T2 FRAME START: EDIT WORD ROW 3
+        r_grid_1 += 1; c_grid_1 += 0
+        r_grid_2 = -1; c_grid_2 = -1
+        self.frame_editwordrow3 = ttk.Frame(this_frame_1)
+        this_frame_2 = self.frame_editwordrow3
+        this_frame_2.grid(row=r_grid_1, column=c_grid_1, sticky='NESW')
+        this_frame_1.rowconfigure(r_grid_1, weight=0)
+        # this_frame_1.columnconfigure(c_grid_1, weight=1)
+
+        # T3 WIDGET START: EDIT WORD EXAMPLE LABEL
+        r_grid_2 += 1; c_grid_2 += 1
+        self.label_editword_example = ttk.Label(this_frame_2, text='Example:')
+        this_widget_3 = self.label_editword_example
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='NW')
+        this_frame_2.rowconfigure(r_grid_2, weight=1)
+        this_frame_2.columnconfigure(c_grid_2, weight=0)
+        # T3 WIDGET END: EDIT WORD EXAMPLE LABEL
+
+        # T3 WIDGET START: EDIT WORD EXAMPLE ENTRY
+        r_grid_2 += 0; c_grid_2 += 1
+        self.var['add']['example'] = tk.StringVar(value='')
+        self.entry_editword_example = ttk.Entry(this_frame_2, textvariable=self.var['add']['example'])
+        this_widget_3 = self.entry_editword_example
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='NESW')
+        # this_frame_2.rowconfigure(r_grid_2, weight=1)
+        this_frame_2.columnconfigure(c_grid_2, weight=1)
+        # T2 FRAME END: EDIT WORD ROW 3
+
+        # T2 FRAME START: EDIT WORD ROW 4
+        r_grid_1 += 1; c_grid_1 += 0
+        r_grid_2 = -1; c_grid_2 = -1
+        self.frame_editwordrow4 = ttk.Frame(this_frame_1)
+        this_frame_2 = self.frame_editwordrow4
+        this_frame_2.grid(row=r_grid_1, column=c_grid_1, sticky='NESW')
+        this_frame_1.rowconfigure(r_grid_1, weight=0)
+        # this_frame_1.columnconfigure(c_grid_1, weight=1)
+
+        # T3 WIDGET START: EDIT WORD NOTES LABEL
+        r_grid_2 += 1; c_grid_2 += 1
+        self.label_editword_notes = ttk.Label(this_frame_2, text='Notes:')
+        this_widget_3 = self.label_editword_notes
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='NW')
+        this_frame_2.rowconfigure(r_grid_2, weight=1)
+        this_frame_2.columnconfigure(c_grid_2, weight=0)
+        # T3 WIDGET END: EDIT WORD NOTES LABEL
+
+        # T3 WIDGET START: EDIT WORD NOTES ENTRY
+        r_grid_2 += 0; c_grid_2 += 1
+        self.var['add']['notes'] = tk.StringVar(value='')
+        self.entry_editword_notes = ttk.Entry(this_frame_2, textvariable=self.var['add']['notes'])
+        this_widget_3 = self.entry_editword_notes
+        this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='NESW')
+        # this_frame_2.rowconfigure(r_grid_2, weight=1)
+        this_frame_2.columnconfigure(c_grid_2, weight=1)
+        # T2 FRAME END: EDIT WORD ROW 4
+        # T1 FRAME END: EDIT WORD
+
+        # T1 FRAME START: UPLOAD CHANGES
+        r_grid_0 += 1; c_grid_0 += 0
+        r_grid_1 = -1; c_grid_1 = -1
+        self.frame_uploadchanges = ttk.LabelFrame(this_tab, text='Upload changes')
+        this_frame_1 = self.frame_uploadchanges
+        this_frame_1.grid(row=r_grid_0, column=c_grid_0, sticky='NESW')
+        this_tab.rowconfigure(r_grid_0, weight=1)
+        # this_tab.columnconfigure(c_grid_0, weight=1)
+        # T1 FRAME END: UPLOAD CHANGES
+        # TAB FRAME END: ACTION
 
 
         # Go
         self.mainloop()
+        return
+    
+    def _callback_button_addword_check(self):
+        # TODO _callback_button_addword_check
+        result = ''
+        word = self.var['add']['word'].get()
+        result = self.app.find_word(word)
+
+        self.var['add']['checkresults'].set(result)
+        
+        return
+    
+    def _callback_button_addword_add(self):
+        # TODO _callback_button_addword_add
+        return
+    
+    def _callback_button_searchword(self):
+        # TODO _callback_button_searchword
         return
     
     def _callback_button_wotdprev(self):

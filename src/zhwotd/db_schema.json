@@ -20,6 +20,14 @@
                         "notes": {"type": "TEXT"},
                         "hsk": {"type": "INTEGER"}
                     }
+                },
+                "changes": {
+                    "columns": {
+                        "id": {"type": "INTEGER", "primary_key": true, "autoincrement": true},
+                        "old_value": {"type": "TEXT"},
+                        "new_value": {"type": "TEXT"},
+                        "timestamp": {"type": "DATETIME", "not_null": true, "default": "CURRENT_TIMESTAMP"}
+                    }
                 }
             }
         }
