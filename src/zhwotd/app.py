@@ -2,13 +2,18 @@ import json
 import os
 from zhwotd.gui import GUI
 from zhwotd.db.manager import DatabaseManager
-
+from zhwotd.models.word import Word
+from zhwotd.models.wotd import WOTD
+from zhwotd.db.queries import query_word_by_text
 
 class Application:
     def __init__(self):
         self.config = self._load_config()
         self.dbm = DatabaseManager(self.config['database'])
-        gui = GUI(self, self.config['gui'])
+        return
+    
+    def run(self):
+        self.gui = GUI(self, self.config['gui'])
         return
     
     def _load_config(self):
@@ -26,7 +31,7 @@ class Application:
         query_builder = QueryBuilder()
         query = query_builder.find_word(word)
         print('query:', query)
-        query_result = self.dbm.execute_query(query)
+        query_result = self.dbm.execute(query_word_by_text(word))
         print('query_result:', query_result)
         return result
     

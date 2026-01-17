@@ -29,6 +29,15 @@ class DatabaseManager:
         finally:
             db.close()
 
+    def execute(self, fn):
+        """
+        Run query-building function inside a managed session
+        
+        :param fn: 
+        """
+        with self.session() as db:
+            return fn(db)
+    
     def add(self, obj):
         with self.session() as db:
             db.add(obj)

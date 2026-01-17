@@ -524,7 +524,7 @@ class GUI(tk.Tk):
 
         # T3 WIDGET START: EDIT WORD HSK ENTRY
         r_grid_2 += 0; c_grid_2 += 1
-        self.var['add']['hsk'] = tk.IntVar(value='')
+        self.var['add']['hsk'] = tk.IntVar(value=0)
         self.entry_editword_hsk = ttk.Entry(this_frame_2, textvariable=self.var['add']['hsk'], width=5)
         this_widget_3 = self.entry_editword_hsk
         this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='EW')
@@ -641,7 +641,7 @@ class GUI(tk.Tk):
         result = ''
         word = self.var['add']['word'].get()
         result = self.app.find_word(word)
-
+        print(result)
         self.var['add']['checkresults'].set(result)
         
         return
