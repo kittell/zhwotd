@@ -2,16 +2,44 @@ import sqlite3
 from pathlib import Path
 import json
 from sqlalchemy import create_engine, text
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.engine import Row
+from typing import Any, List
 
-Base = declarative_base()   # for use in other modules
+from contextlib import contextmanager
+from zhwotd.db.engine import SessionLocal
 
 class DatabaseManager:
-    """Handle operations involving the entire database and its structure
+    """
+    Handle operations involving the entire database and its structure
     """
     def __init__(self, config):
         self.config = config
         return
+
+    @contextmanager
+    def session(self):
+        db = SessionLocal()
+        try:
+            yield db
+            db.commit()
+        except:
+            db.rollback()
+            raise
+        finally:
+            db.close()
+
+    def add(self, obj):
+        with self.session() as db:
+            db.add(obj)
+
+    def get_all(self, model):
+        with self.session() as db:
+            return db.query(model).all()
+
+    def get_by_id(self, model, id_):
+        with self.session() as db:
+            return db.query(model).filter(model.id == id_).first()
     
     def connect(self):
         db_type = self.config['type']
@@ -25,13 +53,6 @@ class DatabaseManager:
             self.create_new_db()
 
         return
-    
-    def execute_query(self, query: str) -> list:
-        results = []
-        with self.engine.connect() as conn:
-            result = conn.execute(text(query))
-            return result.fetchall()
-        return results
         
 
     def create_new_db(self):
@@ -77,6 +98,7 @@ class DatabaseManager:
         with path.open('r', encoding='utf-8') as f:
             data = json.load(f)
         
+        schema = {}
         if str(version) in data['versions']:
             schema = data['versions'][str(version)]
         

@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.types import JSON
-from zhwotd.db import Base
+from zhwotd.db.base import Base
 
 
 class Word(Base):

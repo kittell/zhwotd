@@ -1,13 +1,14 @@
 import json
 import os
 from zhwotd.gui import GUI
-from zhwotd.db import DatabaseManager
+from zhwotd.db.manager import DatabaseManager
 
 
 class Application:
     def __init__(self):
         self.config = self._load_config()
         self.dbm = DatabaseManager(self.config['database'])
+        gui = GUI(self, self.config['gui'])
         return
     
     def _load_config(self):
@@ -19,10 +20,6 @@ class Application:
             config = json.load(f)
         return config
 
-    def start(self):
-        self.dbm.connect()
-        gui = GUI(self, self.config['gui'])
-        return
     
     def find_word(self, word) -> str:
         result = ''
