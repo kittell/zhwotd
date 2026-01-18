@@ -1,4 +1,6 @@
-class WOTD:
+from sqlalchemy.orm import Mapped, mapped_column
+
+class DB_WOTD:
     def __init__(self, word: str, date: str):
         self.word = word
         self.date = date

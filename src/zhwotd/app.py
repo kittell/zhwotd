@@ -2,9 +2,12 @@ import json
 import os
 from zhwotd.gui import GUI
 from zhwotd.db.manager import DatabaseManager
-from zhwotd.models.word import Word
-from zhwotd.models.wotd import WOTD
+from zhwotd.models.word import DB_Word
+from zhwotd.models.wotd import DB_WOTD
 from zhwotd.db.queries import query_word_by_text
+from zhwotd.domain.word import Word
+from zhwotd.domain.wotd import WOTD
+
 
 class Application:
     def __init__(self):
@@ -26,14 +29,26 @@ class Application:
         return config
 
     
-    def find_word(self, word) -> str:
+    def find_word(self, word: str) -> str:
+        """
+        Find a word in the database
+        """
+        # TODO: add another scheme for searching on any attribute, not just the word text
         result = ''
         query_builder = QueryBuilder()
         query = query_builder.find_word(word)
         print('query:', query)
         query_result = self.dbm.execute(query_word_by_text(word))
+        # TODO: return a Word object
         print('query_result:', query_result)
         return result
+
+    def add_word(self, word: Word):
+        """
+        Add a word to the Word database
+        """
+
+        return
     
 
 class QueryBuilder:
