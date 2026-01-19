@@ -1,9 +1,10 @@
 import sqlite3
 from pathlib import Path
 import json
-from sqlalchemy import create_engine, text
+from sqlalchemy import create_engine, text, select
 from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy.engine import Row
+from sqlalchemy.exc import IntegrityError
 from typing import Any, List
 
 from contextlib import contextmanager
@@ -15,6 +16,11 @@ class DatabaseManager:
     """
     def __init__(self, config):
         self.config = config
+        db_type = self.config['type']
+        db_name = self.config['name']
+        script_dir = Path(__file__).resolve().parent
+        db_path = script_dir / db_name
+        self.db_url = db_type + ':///' + str(db_path)
         return
 
     @contextmanager
@@ -51,11 +57,7 @@ class DatabaseManager:
             return db.query(model).filter(model.id == id_).first()
     
     def connect(self):
-        db_type = self.config['type']
-        db_name = self.config['name']
-        script_dir = Path(__file__).resolve().parent
-        db_path = script_dir / db_name
-        self.db_url = db_type + ':///' + str(db_path)
+        
 
         self.engine = create_engine(self.db_url)
         if Path(self.db_url).is_file() == False:

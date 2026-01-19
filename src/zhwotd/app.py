@@ -33,7 +33,6 @@ class Application:
         """
         Find a word in the database
         """
-        # TODO: add another scheme for searching on any attribute, not just the word text
         result = ''
         query_builder = QueryBuilder()
         query = query_builder.find_word(word)
@@ -47,7 +46,7 @@ class Application:
         """
         Add a word to the Word database
         """
-
+        
         return
     
 
