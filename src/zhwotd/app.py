@@ -2,9 +2,8 @@ import json
 import os
 from zhwotd.gui import GUI
 from zhwotd.db.manager import DatabaseManager
-from zhwotd.models.word import DB_Word
-from zhwotd.models.wotd import DB_WOTD
-from zhwotd.db.queries import query_word_by_text
+from zhwotd.models.word import word_table
+from zhwotd.models.wotd import wotd_table
 from zhwotd.domain.word import Word
 from zhwotd.domain.wotd import WOTD
 
@@ -13,10 +12,6 @@ class Application:
     def __init__(self):
         self.config = self._load_config()
         self.dbm = DatabaseManager(self.config['database'])
-        return
-    
-    def run(self):
-        self.gui = GUI(self, self.config['gui'])
         return
     
     def _load_config(self):
@@ -29,39 +24,16 @@ class Application:
         return config
 
     
-    def find_word(self, word: str) -> str:
-        """
-        Find a word in the database
-        """
-        result = ''
-        query_builder = QueryBuilder()
-        query = query_builder.find_word(word)
-        print('query:', query)
-        query_result = self.dbm.execute(query_word_by_text(word))
-        # TODO: return a Word object
-        print('query_result:', query_result)
-        return result
-
-    def add_word(self, word: Word):
-        """
-        Add a word to the Word database
-        """
-        
+    def run(self):
+        self.gui = GUI(self, self.config['gui'])
         return
     
+    def find_word(self, simplified: str):
+        """Return dict or None."""
+        return self.dbm.get_word(simplified)
 
-class QueryBuilder:
-    """Build queries specific to program function, then handoff to DatabaseManager
-    """
-    def __init__(self):
-        return
+    def add_word(self, word_data: dict):
+        """Insert a new word and return the inserted row as dict."""
+        return self.dbm.insert_word(word_data)
     
-    def find_word(self, word: str) -> str:
-        # TODO: restart here next time
-        query = f'''
-            SELECT *
-            FROM words
-            WHERE word = :word
-        '''
-        return query
-
+    

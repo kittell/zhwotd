@@ -12,7 +12,7 @@
                 "dictionary": {
                     "columns": {
                         "id": {"type": "INTEGER", "primary_key": true, "autoincrement": true},
-                        "word": {"type": "TEXT"},
+                        "simplified": {"type": "TEXT"},
                         "pinyin": {"type": "TEXT"},
                         "traditional": {"type": "TEXT"},
                         "definition": {"type": "TEXT"},

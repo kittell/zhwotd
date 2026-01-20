@@ -156,18 +156,18 @@ class GUI(tk.Tk):
         
         # T3 WIDGET START: ADD WORD WORD LABEL
         r_grid_2 += 1; c_grid_2 += 1
-        self.label_addword_word = ttk.Label(this_frame_2, text='Word:')
-        this_widget_3 = self.label_addword_word
+        self.label_addword_simplified = ttk.Label(this_frame_2, text='Word:')
+        this_widget_3 = self.label_addword_simplified
         this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='W')
         this_frame_2.rowconfigure(r_grid_2, weight=0)
         this_frame_2.columnconfigure(c_grid_2, weight=0)
         # T3 WIDGET END: ADD WORD WORD LABEL
 
         # T3 WIDGET START: ADD WORD WORD ENTRY
-        self.var['add']['word'] = tk.StringVar(value='')
+        self.var['add']['simplified'] = tk.StringVar(value='')
         r_grid_2 += 0; c_grid_2 += 1
-        self.entry_addword_word = ttk.Entry(this_frame_2, textvariable=self.var['add']['word'], width=10)
-        this_widget_3 = self.entry_addword_word
+        self.entry_addword_simplified = ttk.Entry(this_frame_2, textvariable=self.var['add']['simplified'], width=10)
+        this_widget_3 = self.entry_addword_simplified
         this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='EW')
         this_frame_2.rowconfigure(r_grid_2, weight=0)
         this_frame_2.columnconfigure(c_grid_2, weight=1)
@@ -458,8 +458,8 @@ class GUI(tk.Tk):
         
         # T3 WIDGET START: EDIT WORD WORD LABEL
         r_grid_2 += 1; c_grid_2 += 1
-        self.label_editword_word = ttk.Label(this_frame_2, text='Word:')
-        this_widget_3 = self.label_editword_word
+        self.label_editword_simplified = ttk.Label(this_frame_2, text='Word:')
+        this_widget_3 = self.label_editword_simplified
         this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='W')
         this_frame_2.rowconfigure(r_grid_2, weight=0)
         this_frame_2.columnconfigure(c_grid_2, weight=0)
@@ -467,9 +467,9 @@ class GUI(tk.Tk):
 
         # T3 WIDGET START: EDIT WORD WORD ENTRY
         r_grid_2 += 0; c_grid_2 += 1
-        self.var['add']['word'] = tk.StringVar(value='')
-        self.entry_editword_word = ttk.Entry(this_frame_2, textvariable=self.var['add']['word'], width=10)
-        this_widget_3 = self.entry_editword_word
+        self.var['edit']['simplified'] = tk.StringVar(value='')
+        self.entry_editword_simplified = ttk.Entry(this_frame_2, textvariable=self.var['edit']['simplified'], width=10)
+        this_widget_3 = self.entry_editword_simplified
         this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='EW')
         this_frame_2.rowconfigure(r_grid_2, weight=0)
         this_frame_2.columnconfigure(c_grid_2, weight=1)
@@ -486,8 +486,8 @@ class GUI(tk.Tk):
 
         # T3 WIDGET START: EDIT WORD PINYIN ENTRY
         r_grid_2 += 0; c_grid_2 += 1
-        self.var['add']['pinyin'] = tk.StringVar(value='')
-        self.entry_editword_pinyin = ttk.Entry(this_frame_2, textvariable=self.var['add']['pinyin'], width=30)
+        self.var['edit']['pinyin'] = tk.StringVar(value='')
+        self.entry_editword_pinyin = ttk.Entry(this_frame_2, textvariable=self.var['edit']['pinyin'], width=30)
         this_widget_3 = self.entry_editword_pinyin
         this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='EW')
         this_frame_2.rowconfigure(r_grid_2, weight=0)
@@ -505,8 +505,8 @@ class GUI(tk.Tk):
 
         # T3 WIDGET START: EDIT WORD TRADITIONAL ENTRY
         r_grid_2 += 0; c_grid_2 += 1
-        self.var['add']['traditional'] = tk.StringVar(value='')
-        self.entry_editword_traditional = ttk.Entry(this_frame_2, textvariable=self.var['add']['traditional'], width=10)
+        self.var['edit']['traditional'] = tk.StringVar(value='')
+        self.entry_editword_traditional = ttk.Entry(this_frame_2, textvariable=self.var['edit']['traditional'], width=10)
         this_widget_3 = self.entry_editword_traditional
         this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='EW')
         this_frame_2.rowconfigure(r_grid_2, weight=0)
@@ -524,8 +524,8 @@ class GUI(tk.Tk):
 
         # T3 WIDGET START: EDIT WORD HSK ENTRY
         r_grid_2 += 0; c_grid_2 += 1
-        self.var['add']['hsk'] = tk.IntVar(value=0)
-        self.entry_editword_hsk = ttk.Entry(this_frame_2, textvariable=self.var['add']['hsk'], width=5)
+        self.var['edit']['hsk'] = tk.IntVar(value=0)
+        self.entry_editword_hsk = ttk.Entry(this_frame_2, textvariable=self.var['edit']['hsk'], width=5)
         this_widget_3 = self.entry_editword_hsk
         this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='EW')
         this_frame_2.rowconfigure(r_grid_2, weight=0)
@@ -554,8 +554,8 @@ class GUI(tk.Tk):
 
         # T3 WIDGET START: EDIT WORD DEFINITION ENTRY
         r_grid_2 += 0; c_grid_2 += 1
-        self.var['add']['definition'] = tk.StringVar(value='')
-        self.entry_editword_definition = ttk.Entry(this_frame_2, textvariable=self.var['add']['definition'])
+        self.var['edit']['definition'] = tk.StringVar(value='')
+        self.entry_editword_definition = ttk.Entry(this_frame_2, textvariable=self.var['edit']['definition'])
         this_widget_3 = self.entry_editword_definition
         this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='NESW')
         # this_frame_2.rowconfigure(r_grid_2, weight=1)
@@ -583,8 +583,8 @@ class GUI(tk.Tk):
 
         # T3 WIDGET START: EDIT WORD EXAMPLE ENTRY
         r_grid_2 += 0; c_grid_2 += 1
-        self.var['add']['example'] = tk.StringVar(value='')
-        self.entry_editword_example = ttk.Entry(this_frame_2, textvariable=self.var['add']['example'])
+        self.var['edit']['example'] = tk.StringVar(value='')
+        self.entry_editword_example = ttk.Entry(this_frame_2, textvariable=self.var['edit']['example'])
         this_widget_3 = self.entry_editword_example
         this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='NESW')
         # this_frame_2.rowconfigure(r_grid_2, weight=1)
@@ -611,8 +611,8 @@ class GUI(tk.Tk):
 
         # T3 WIDGET START: EDIT WORD NOTES ENTRY
         r_grid_2 += 0; c_grid_2 += 1
-        self.var['add']['notes'] = tk.StringVar(value='')
-        self.entry_editword_notes = ttk.Entry(this_frame_2, textvariable=self.var['add']['notes'])
+        self.var['edit']['notes'] = tk.StringVar(value='')
+        self.entry_editword_notes = ttk.Entry(this_frame_2, textvariable=self.var['edit']['notes'])
         this_widget_3 = self.entry_editword_notes
         this_widget_3.grid(row=r_grid_2, column=c_grid_2, sticky='NESW')
         # this_frame_2.rowconfigure(r_grid_2, weight=1)
@@ -637,22 +637,70 @@ class GUI(tk.Tk):
         return
     
     def _callback_button_addword_check(self):
-        # TODO _callback_button_addword_check
-        result = ''
-        word = self.var['add']['word'].get()
+        word = self.var['add']['simplified'].get().strip()
+        print('word:',word)
+
+        if not word:
+            self.var['add']['checkresults'].set("Enter a word first.")
+            return
+
         result = self.app.find_word(word)
-        print(result)
-        self.var['add']['checkresults'].set(result)
+
+        if result is None:
+            self.var['add']['checkresults'].set("Word not found. You may add it.")
+        else:
+            self.var['add']['checkresults'].set("Word already exists.")
+
         
         return
     
     def _callback_button_addword_add(self):
-        # TODO _callback_button_addword_add
-        return
+        data = {
+            "simplified": self.var['add']['simplified'].get().strip(),
+            "pinyin": self.var['add']['pinyin'].get().strip(),
+            "traditional": self.var['add']['traditional'].get().strip(),
+            "hsk": self.var['add']['hsk'].get(),
+            "definition": self.var['add']['definition'].get().strip(),
+            "example": self.var['add']['example'].get().strip(),
+            "notes": self.var['add']['notes'].get().strip(),
+        }
+
+        if not data["simplified"]:
+            self.var['add']['addresults'].set("Word cannot be empty.")
+            return
+
+        result = self.app.add_word(data)
+
+        if result is None:
+            self.var['add']['addresults'].set("Failed to add word.")
+        else:
+            self.var['add']['addresults'].set("Word added successfully.")
+
     
     def _callback_button_searchword(self):
-        # TODO _callback_button_searchword
-        return
+        word = self.var['edit']['searchword'].get().strip()
+
+        if not word:
+            self.var['edit']['searchresults'].set("Enter a word to search.")
+            return
+
+        result = self.app.find_word(word)
+
+        if result is None:
+            self.var['edit']['searchresults'].set("Word not found.")
+            return
+
+        # Populate edit fields
+        self.var['add']['simplified'].set(result["simplified"])
+        self.var['add']['pinyin'].set(result["pinyin"])
+        self.var['add']['traditional'].set(result["traditional"])
+        self.var['add']['hsk'].set(result["hsk"])
+        self.var['add']['definition'].set(result["definition"])
+        self.var['add']['example'].set(result["example"])
+        self.var['add']['notes'].set(result["notes"])
+
+        self.var['edit']['searchresults'].set("Word loaded for editing.")
+
     
     def _callback_button_wotdprev(self):
         # TODO _callback_button_wotdprev

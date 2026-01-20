@@ -1,18 +1,17 @@
-from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import String, Integer
-from sqlalchemy.types import JSON
-from zhwotd.db.base import Base
+from sqlalchemy import Table, Column, Integer, String, MetaData
+from zhwotd.models import metadata
 
-class DB_Word(Base):
-    __tablename__ = "words"
+metadata = MetaData()
 
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    word: Mapped[str] = mapped_column(String, nullable=False)
-    pinyin: Mapped[str] = mapped_column(String)
-    traditional: Mapped[str] = mapped_column(String)
-    definitions: Mapped[list[str]] = mapped_column(JSON, default=list)
-    examples: Mapped[list[str]] = mapped_column(JSON, default=list)
-    hsk: Mapped[int] = mapped_column(Integer, default=0)
-    notes: Mapped[str] = mapped_column(String)
-
-
+word_table = Table(
+    "dictionary",
+    metadata,
+    Column("id", Integer, primary_key=True),
+    Column("simplified", String, nullable=False),
+    Column("pinyin", String),
+    Column("traditional", String),
+    Column("hsk", Integer),
+    Column("definition", String),
+    Column("example", String),
+    Column("notes", String),
+)

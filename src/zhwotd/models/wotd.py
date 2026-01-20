@@ -1,9 +1,12 @@
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import Table, Column, Integer, String, MetaData, Date
+from zhwotd.models import metadata
 
-class DB_WOTD:
-    def __init__(self, word: str, date: str):
-        self.word = word
-        self.date = date
+metadata = MetaData()
 
-    # def __repr__(self):
-    #     return f"WOTD(word={self.word}, definition={self.definition}, example={self.example})"
+wotd_table = Table(
+    "wotd",
+    metadata,
+    Column("id", Integer, primary_key=True),
+    Column("word", String, nullable=False),
+    Column("date", Date)
+)

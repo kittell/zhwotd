@@ -1,14 +1,11 @@
-import sqlite3
 from pathlib import Path
 import json
-from sqlalchemy import create_engine, text, select
-from sqlalchemy.orm import declarative_base, sessionmaker
-from sqlalchemy.engine import Row
-from sqlalchemy.exc import IntegrityError
-from typing import Any, List
+from sqlalchemy import create_engine, text, select, insert
 
 from contextlib import contextmanager
 from zhwotd.db.engine import SessionLocal
+from zhwotd.models.word import word_table
+from zhwotd.models.wotd import wotd_table
 
 class DatabaseManager:
     """
@@ -35,6 +32,19 @@ class DatabaseManager:
         finally:
             db.close()
 
+    def _row_to_dict(self, row):
+        if row is None:
+            return None
+        return dict(row._mapping)
+    
+
+    def execute_query(self, stmt):
+        with self.session() as db:
+            result = db.execute(stmt)
+            rows = result.fetchall()
+            return [self._row_to_dict(r) for r in rows]
+
+
     def execute(self, fn):
         """
         Run query-building function inside a managed session
@@ -43,6 +53,31 @@ class DatabaseManager:
         """
         with self.session() as db:
             return fn(db)
+        
+    def insert_record(self, stmt):
+        with self.session() as db:
+            result = db.execute(stmt)
+            inserted_id = result.lastrowid
+            return inserted_id
+        
+    def get_word(self, simplified: str):
+        stmt = select(word_table).where(word_table.c.simplified == simplified)
+        rows = self.execute_query(stmt)
+        return rows[0] if rows else None
+
+    def insert_word(self, word_data: dict):
+        stmt = insert(word_table).values(**word_data)
+        inserted_id = self.insert_record(stmt)
+
+        if inserted_id is None:
+            return None
+
+        # Fetch the inserted row
+        stmt = select(word_table).where(word_table.c.id == inserted_id)
+        rows = self.execute_query(stmt)
+        return rows[0] if rows else None
+
+
     
     def add(self, obj):
         with self.session() as db:
