@@ -1,11 +1,11 @@
 import json
 import os
-from zhwotd.gui import GUI
-from zhwotd.db.manager import DatabaseManager
-from zhwotd.models.word import word_table
-from zhwotd.models.wotd import wotd_table
-from zhwotd.domain.word import Word
-from zhwotd.domain.wotd import WOTD
+from zhwotd.ui import GUI
+from zhwotd.db import DatabaseManager
+from zhwotd.word import word_table
+from zhwotd.wotd import wotd_table
+from zhwotd.word import Word
+from zhwotd.wotd import WOTD
 
 
 class Application:

@@ -1,6 +1,13 @@
 from sqlalchemy import Table, Column, Integer, String, MetaData, Date
-from zhwotd.models import metadata
+from sqlalchemy import MetaData 
 
+metadata = MetaData()
+
+class WOTD:
+    def __init__(self, d, word):
+        self.d = d
+        self.word = word
+      
 metadata = MetaData()
 
 wotd_table = Table(

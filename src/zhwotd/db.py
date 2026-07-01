@@ -1,11 +1,36 @@
 from pathlib import Path
 import json
+from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine, text, select, insert
 
 from contextlib import contextmanager
-from zhwotd.db.engine import SessionLocal
-from zhwotd.models.word import word_table
-from zhwotd.models.wotd import wotd_table
+from zhwotd.word import word_table
+from zhwotd.wotd import wotd_table
+
+from sqlalchemy import MetaData 
+
+metadata = MetaData()
+
+def init_db():
+    metadata.create_all(engine)
+
+
+# Path to your SQLite database file
+db_url = "sqlite:///./zhwotd.db"
+
+# Create a SQLAlchemy Core engine
+engine = create_engine(
+    db_url,
+    connect_args={"check_same_thread": False}  # required for SQLite + threads
+)
+
+# Create a Core-compatible session factory
+SessionLocal = sessionmaker(
+    bind=engine,
+    autocommit=False,
+    autoflush=False,
+)
+
 
 class DatabaseManager:
     """

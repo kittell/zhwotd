@@ -1,4 +1,4 @@
-from zhwotd.db.init_db import init_db
+from zhwotd.db import init_db
 from zhwotd.app import Application
 
 def main():
