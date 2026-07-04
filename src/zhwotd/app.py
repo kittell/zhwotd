@@ -1,6 +1,6 @@
 import json
 import os
-from zhwotd.ui import GUI
+from zhwotd.app_ui import MainWindow
 from zhwotd.db import DatabaseManager
 from zhwotd.word import word_table
 from zhwotd.wotd import wotd_table
@@ -25,7 +25,7 @@ class Application:
 
     
     def run(self):
-        self.gui = GUI(self, self.config['gui'])
+        self.user_interface = MainWindow(self, self.config['gui'])
         return
     
     def find_word(self, simplified: str):
